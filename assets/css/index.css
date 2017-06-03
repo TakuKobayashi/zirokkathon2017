@@ -53,8 +53,9 @@
       width: auto; }
 
 .mainVisual {
+  background-image: url("/assets/image/jinbo_shou.jpg");
   position: relative;
-  padding-top: 64.25%; }
+ }
   .mainVisual .mainPhoto {
     position: absolute;
     top: 0;
@@ -67,6 +68,8 @@
     margin: 0 auto 0 auto;
     width: 585px; }
   .mainDiscription .mainDiscription__desc {
+    background-color: #FFFF00;
+    color: #FF0000;
     margin: 36px 0 0 0;
     font-size: 16px;
     line-height: 2.25; }

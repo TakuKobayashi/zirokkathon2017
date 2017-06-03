@@ -2,12 +2,12 @@ var express = require('express');
 var app = express();
 
 var multer  = require('multer');
-var uploaded = multer({dest: 'tmp'});
 
 //★3 EJSのロード
 var ejs = require('ejs');
 //★4 テンプレートエンジンの設定
 app.engine('ejs',ejs.renderFile);
+app.use('/assets', express.static(__dirname + '/assets'));
 
 var fs = require('fs');
 
@@ -29,6 +29,10 @@ app.get('/jquery/jquery.js', function(req, res) {
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/top', function(req, res){
+  res.render('top.ejs', {});
 });
 
 // アップロードされるファイルの受け取り
