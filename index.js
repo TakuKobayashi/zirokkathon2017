@@ -18,12 +18,6 @@ var http = require('http');
 
 var gcvHttpRequest = require('./http_request.js');
 
-// サンプルの画像を投稿する場合のやり方
-//var imageFile = fs.readFileSync('image.jpg');
-//gcvHttpRequest.gcvDetectRequest(imageFile, function(result){
-//  console.log(JSON.stringify(result));
-//});
-
 //指定したポートにきたリクエストを受け取れるようにする
 var server = http.createServer(app).listen(port, function () {
   console.log('Server listening at port %d', port);
@@ -47,6 +41,28 @@ app.post('/osusume', upload.single('upName'), (req, res) => {
   var imageFile = fs.readFileSync(`${req.file.path}`);
   gcvHttpRequest.gcvDetectRequest(imageFile, function(result){
     console.log(JSON.stringify(result));
+
+
+    var left = (result.responses[0].faceAnnotations[0].landmarks.filter(function(item, index){
+      if (item.type == 'LEFT_EAR_TRAGION') return true;
+    }))[0].position.x;
+
+    var right = (result.responses[0].faceAnnotations[0].landmarks.filter(function(item, index){
+      if (item.type == 'RIGHT_EAR_TRAGION') return true;
+    }))[0].position.x;
+
+    var top = (result.responses[0].faceAnnotations[0].landmarks.filter(function(item, index){
+      if (item.type == 'FOREHEAD_GLABELLA') return true;
+    }))[0].position.y;
+
+    var bottom = (result.responses[0].faceAnnotations[0].landmarks.filter(function(item, index){
+      if (item.type == 'CHIN_GNATHION') return true;
+    }))[0].position.y;
+
+    var aspect = (right - left) / (bottom - top)
+
+    res.locals.aspect = "[" + left + "," + right + "," + top + "," + bottom + "," + aspect + "]";
+    // result.responses[].faceAnnotations[].landmarks;
     res.locals.faceRes = JSON.stringify(result);
     res.render('osusume.ejs', {});
   });
