@@ -17,3 +17,6 @@ app.get('/jquery/jquery.js', function(req, res) {
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
+app.post('/osusume', function(req, res){
+  res.sendFile(__dirname + '/osusume.html');
+});
