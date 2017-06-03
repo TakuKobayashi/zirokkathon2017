@@ -39,8 +39,17 @@ app.get('/', function(req, res){
 
 // アップロードされるファイルの受け取り
 const upload = multer({dest: 'uploaded'})
+
 app.post('/osusume', upload.single('upName'), (req, res) => {
   console.log(`originalname: ${req.file.originalname}`)
   console.log(`path: ${req.file.path}`)
-  res.send(JSON.stringify({ok: true}))
+
+  var imageFile = fs.readFileSync(`${req.file.path}`);
+  gcvHttpRequest.gcvDetectRequest(imageFile, function(result){
+    console.log(JSON.stringify(result));
+    res.locals.faceRes = JSON.stringify(result);
+    res.render('osusume.ejs', {});
+  });
+
+  // res.send(JSON.stringify({ok: true}))
 });
