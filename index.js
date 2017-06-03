@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
 
+var multer  = require('multer');
+var uploaded = multer({dest: 'tmp'});
+
 //★3 EJSのロード
 var ejs = require('ejs');
 //★4 テンプレートエンジンの設定

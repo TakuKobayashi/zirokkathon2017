@@ -15,7 +15,8 @@
     "jquery":"*",
     "nodemon":"*",
     "request": "*",
-    "sync-request":"*"
+    "sync-request":"*",
+    "multer":"*"
   },
   "repository": {
     "type": "git",
