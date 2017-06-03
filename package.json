@@ -13,7 +13,9 @@
     "express": "*",
     "ejs": "*",
     "jquery":"*",
-    "nodemon":"*"
+    "nodemon":"*",
+    "request": "*",
+    "sync-request":"*"
   },
   "repository": {
     "type": "git",
