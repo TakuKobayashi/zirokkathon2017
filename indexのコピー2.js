@@ -1,9 +1,6 @@
 var express = require('express');
 var app = express();
 
-var multer  = require('multer');
-var uploaded = multer({dest: 'tmp'});
-
 //★3 EJSのロード
 var ejs = require('ejs');
 //★4 テンプレートエンジンの設定
@@ -32,15 +29,19 @@ var server = http.createServer(app).listen(port, function () {
 app.get('/jquery/jquery.js', function(req, res) {
   res.sendFile(__dirname + '/node_modules/jquery/dist/jquery.js');
 });
-
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-// アップロードされるファイルの受け取り
-const upload = multer({dest: 'uploaded'})
-app.post('/osusume', upload.single('upName'), (req, res) => {
-  console.log(`originalname: ${req.file.originalname}`)
-  console.log(`path: ${req.file.path}`)
-  res.send(JSON.stringify({ok: true}))
+app.post('/osusume', function(req, res){
+  // fileオブジェクト取得
+  var file = req.files;
+  // リネームしてimgタグで見れるようにする
+  console.log('file %s', file);
+  fs.rename(file.path, imageDirPath + 'upfile.png' , function(err) {
+      if (err) {
+          console.log(err);
+      }
+      res.render('osusume.ejs', {});
+  });
 });
