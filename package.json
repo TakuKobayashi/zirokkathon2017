@@ -11,8 +11,6 @@
   "license": "",
   "dependencies": {
     "express": "*",
-    "socket.io": "*",
-    "ws": "*",
     "ejs": "*",
     "jquery":"*",
     "nodemon":"*"
