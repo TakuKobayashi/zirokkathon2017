@@ -31,14 +31,6 @@ var generateRequestParams = function(imageFile) {
         {
           type: "TEXT_DETECTION",
           maxResults: 10
-        },
-        {
-          type: "LANDMARK_DETECTION",
-          maxResults: 10
-        },
-        {
-          type: "IMAGE_PROPERTIES",
-          maxResults: 10
         }
       ]
     }]
