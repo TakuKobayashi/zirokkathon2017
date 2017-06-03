@@ -11,50 +11,55 @@ var headers = {
 
 var request_url = url + "?key=" + apiConfig.google.apikey
 
-var imageFile = fs.readFileSync('image.jpg');
-var imageBase64Encoded = new Buffer(imageFile).toString('base64');
+var generateRequestParams = function(imageFile) {
+  var imageBase64Encoded = new Buffer(imageFile).toString('base64');
 
-bodyObj = {
-  requests: [{
-    image: {
-      content: imageBase64Encoded
-    },
-    features: [
-      {
-        type: "FACE_DETECTION",
-        maxResults: 10
+  bodyObj = {
+    requests: [{
+      image: {
+        content: imageBase64Encoded
       },
-      {
-        type: "LABEL_DETECTION",
-        maxResults: 10
-      },
-      {
-        type: "TEXT_DETECTION",
-        maxResults: 10
-      },
-      {
-        type: "LANDMARK_DETECTION",
-        maxResults: 10
-      },
-      {
-        type: "IMAGE_PROPERTIES",
-        maxResults: 10
-      }
-    ]
-  }]
+      features: [
+        {
+          type: "FACE_DETECTION",
+          maxResults: 10
+        },
+        {
+          type: "LABEL_DETECTION",
+          maxResults: 10
+        },
+        {
+          type: "TEXT_DETECTION",
+          maxResults: 10
+        },
+        {
+          type: "LANDMARK_DETECTION",
+          maxResults: 10
+        },
+        {
+          type: "IMAGE_PROPERTIES",
+          maxResults: 10
+        }
+      ]
+    }]
+  }
+
+  //オプションを定義
+  var requestParams = {
+    url: request_url,
+    method: 'POST',
+    headers: headers,
+    json: true,
+    body: bodyObj
+  }
+  return requestParams;
 }
 
-//オプションを定義
-var options = {
-  url: request_url,
-  method: 'POST',
-  headers: headers,
-  json: true,
-  body: bodyObj
+exports.gcvDetectRequest = function(imageFile, resultCallback) {
+  //リクエスト送信
+  request(generateRequestParams(imageFile), function (error, response, body) {
+    console.log(JSON.stringify(body));
+    resultCallback(body);
+    //コールバックで色々な処理
+  });
 }
-
-//リクエスト送信
-request(options, function (error, response, body) {
-  console.log(JSON.stringify(body));
-  //コールバックで色々な処理
-})

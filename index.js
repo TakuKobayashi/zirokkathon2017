@@ -1,10 +1,17 @@
 var express = require('express');
 var app = express();
+var fs = require('fs');
 
 var port = process.env.PORT || 3000;
 
 //サーバーの立ち上げ
 var http = require('http');
+
+var gcvHttpRequest = require('./http_request.js');
+var imageFile = fs.readFileSync('image.jpg');
+gcvHttpRequest.gcvDetectRequest(imageFile, function(result){
+  console.log(JSON.stringify(result));
+});
 
 //指定したポートにきたリクエストを受け取れるようにする
 var server = http.createServer(app).listen(port, function () {
