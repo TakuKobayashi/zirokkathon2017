@@ -1,5 +1,11 @@
 var express = require('express');
 var app = express();
+
+//★3 EJSのロード
+var ejs = require('ejs');
+//★4 テンプレートエンジンの設定
+app.engine('ejs',ejs.renderFile);
+
 var fs = require('fs');
 
 var port = process.env.PORT || 3000;
@@ -25,4 +31,8 @@ app.get('/jquery/jquery.js', function(req, res) {
 });
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/osusume', function(req, res){
+  res.render('osusume.ejs', {});
 });
