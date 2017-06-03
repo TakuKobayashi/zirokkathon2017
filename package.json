@@ -1,0 +1,31 @@
+{
+  "name": "zirokkathon2017",
+  "version": "0.0.1",
+  "description": "zirokkathon2017's webserver application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "TakuKobayashi",
+  "private": true,
+  "license": "",
+  "dependencies": {
+    "express": "*",
+    "socket.io": "*",
+    "ws": "*",
+    "ejs": "*",
+    "jquery":"*",
+    "nodemon":"*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TakuKobayashi/zirokkathon2017"
+  },
+  "keywords": [
+    "node",
+    "websocket",
+    "express",
+    "socket.io"
+  ],
+  "license": "MIT"
+}
