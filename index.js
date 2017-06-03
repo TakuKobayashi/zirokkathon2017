@@ -8,7 +8,7 @@ var ejs = require('ejs');
 //★4 テンプレートエンジンの設定
 app.engine('ejs',ejs.renderFile);
 app.use('/assets', express.static(__dirname + '/assets'));
-
+app.use('/jiro_jpg', express.static(__dirname + '/jiro_jpg'));
 var fs = require('fs');
 
 var port = process.env.PORT || 3000;
@@ -66,7 +66,41 @@ app.post('/osusume', upload.single('upName'), (req, res) => {
     var aspect = (right - left) / (bottom - top)
 
     res.locals.aspect = "[" + left + "," + right + "," + top + "," + bottom + "," + aspect + "]";
+
+    if       ( aspect < 1.10 ) {
+      message = '目黒店 ラーメン小';
+      photo = 'meguro_shou.jpg';
+    } else if( aspect < 1.12 ) {
+      message = '新宿小滝橋通り店 ラーメン小';
+      photo = 'kotaki_dai.jpg';
+
+    } else if( aspect < 1.135 ) {
+      message = '歌舞伎町店 ラーメン小';
+      photo = 'kabuki_shou.jpg';
+
+    } else if( aspect < 1.115 ) {
+      message = '新橋店　ラーメン小';
+      photo = 'senju_dai.jpg';
+
+    } else if( aspect < 1.165 ) {
+      message = '千住大橋駅前店 ラーメン大';
+      photo = 'senju_shou.jpg';
+
+    } else if( aspect < 1.18 ) {
+      message = '三田本店 らーめん大';
+      photo = 'jinbo_shou.jpg';
+
+    } else if( aspect < 1.2 ) {
+      message = '神保町 らーめん大';
+      photo = 'jinbo_dai.jpg';
+
+    } else  {
+      message = '野猿街道店2 らーめん大';
+      photo = 'yaen_dai.jpg';
+    }
     // result.responses[].faceAnnotations[].landmarks;
+    res.locals.message = message;
+    res.locals.photo = photo;
     res.locals.faceRes = JSON.stringify(result);
     res.render('osusume.ejs', {});
   });
