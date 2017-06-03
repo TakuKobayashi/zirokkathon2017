@@ -8,10 +8,12 @@ var port = process.env.PORT || 3000;
 var http = require('http');
 
 var gcvHttpRequest = require('./http_request.js');
-var imageFile = fs.readFileSync('image.jpg');
-gcvHttpRequest.gcvDetectRequest(imageFile, function(result){
-  console.log(JSON.stringify(result));
-});
+
+// サンプルの画像を投稿する場合のやり方
+//var imageFile = fs.readFileSync('image.jpg');
+//gcvHttpRequest.gcvDetectRequest(imageFile, function(result){
+//  console.log(JSON.stringify(result));
+//});
 
 //指定したポートにきたリクエストを受け取れるようにする
 var server = http.createServer(app).listen(port, function () {
@@ -23,7 +25,4 @@ app.get('/jquery/jquery.js', function(req, res) {
 });
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
-});
-app.post('/osusume', function(req, res){
-  res.sendFile(__dirname + '/osusume.html');
 });
