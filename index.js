@@ -28,7 +28,8 @@ app.get('/jquery/jquery.js', function(req, res) {
 });
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+  //res.sendFile(__dirname + '/index.html');
+  res.render('top.ejs', {});
 });
 
 app.get('/top', function(req, res){

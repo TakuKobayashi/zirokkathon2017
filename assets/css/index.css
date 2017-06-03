@@ -63,14 +63,43 @@
 
 .mainDiscription {
   padding: 86px 0 302px 0;
+  background-size:50% auto;
+
   text-align: center; }
-  .mainDiscription .mainDiscription__title {
-    margin: 0 auto 0 auto;
-    width: 585px; }
+  .mainDiscription input[type="file"] {
+    margin: 12px 0 0 0;
+    position: relative;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #FFF;
+    background: #fd9535;/*背景色*/
+    border-bottom: solid 2px #d27d00;/*少し濃い目の色に*/
+    border-radius: 4px;/*角の丸み*/
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+    font-weight: bold;
+  }
+
+  .mainDiscription .square_btn {
+    margin: 12px 0 0 0;
+    position: relative;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #FFF;
+    background: #fd9535;/*背景色*/
+    border-bottom: solid 2px #d27d00;/*少し濃い目の色に*/
+    border-radius: 4px;/*角の丸み*/
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+    font-weight: bold;
+  }
+  .mainDiscription .square_btn:active {
+    border-bottom: solid 2px #fd9535;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+  }
   .mainDiscription .mainDiscription__desc {
     background-color: #FFFF00;
     color: #FF0000;
-    margin: 36px 0 0 0;
     font-size: 16px;
     line-height: 2.25; }
 

@@ -16,6 +16,7 @@
       }
       .gm-style img { max-width: none; }
     </style>
+    <script src="/jquery/jquery.js"></script>
   </head>
 
   <body>
@@ -26,11 +27,14 @@
             <div class="mainDiscription">
               <div class="grid">
                 <p class="mainDiscription__desc">
-                  旬の和食材や出汁を素材として、フレンチの技法で丁寧に料理します。<br>
-                  しっかりとしたお食事はコースをご用意。ワインはもちろん、日本酒と共にお楽しみください。<br>
-                  ちょっと小腹が空いた深めの時間には、シェフがあなただけに、ちょうどよいごはんを作ります。<br>
-                  お箸で食べるフレンチごはん。いつでもおいしいお料理を支度してお待ちしております。
+                  二郎初心者に、その人に合った最適な二郎を推薦します。<br>
+                  あなたの画像を選択し、アップしたら、初めてのあなたにぴったりな二郎をご紹介!!<br>
+                  さぁ、これであなたもジロリアンへの第一歩を踏み出しましょう!!
                 </p>
+                <form id="file-form" method="post" action="/osusume" enctype="multipart/form-data", class="upload">
+                  <input type="file" name="upName" />
+                  <button type="submit" class="square_btn">写真をアップ</button>
+                </form>
               </div>
             </div>
           </div>
